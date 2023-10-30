@@ -15,7 +15,7 @@ void p_abi(unsigned char *e_ident);
 void p_osabi(unsigned char *e_ident);
 void p_type(unsigned int e_type, unsigned char *e_ident);
 void p_entry(unsigned long int e_entry, unsigned char *e_ident);
-void c_elf(int des);
+void ct_elf(int thes);
 
 /**
  * check_elf - search for an ELF file.
@@ -240,17 +240,17 @@ void p_entry(unsigned long int e_entry, unsigned char *e_ident)
 }
 
 /**
- * check_elf - to shut down an ELF file.
- * @des: tells all.
+ * ct_elf - to shut down an ELF file.
+ * @thes: tells all.
  * Description: If the file cannot be closed - exit code 98.
  */
 
-void check_elf(int des)
+void ct_elf(int thes)
 {
-	if (close(des) == -1)
+	if (close(thes) == -1)
 	{
 		dprintf(STDERR_FILENO,
-			"Error: Can't close fd %d\n", des);
+			"Error: Can't close fd %d\n", thes);
 		exit(98);
 	}
 }
@@ -278,7 +278,7 @@ int main(int __attribute__((__unused__)) argc, char *argv[])
 	header = malloc(sizeof(Elf64_Ehdr));
 	if (header == NULL)
 	{
-		check_elf(j);
+		ct_elf(j);
 		dprintf(STDERR_FILENO, "Error: Can't read file %s\n", argv[1]);
 		exit(98);
 	}
@@ -286,7 +286,7 @@ int main(int __attribute__((__unused__)) argc, char *argv[])
 	if (k == -1)
 	{
 		free(header);
-		check_elf(j);
+		ct_elf(j);
 		dprintf(STDERR_FILENO, "Error: `%s`: No such file\n", argv[1]);
 		exit(98);
 	}
@@ -303,7 +303,7 @@ int main(int __attribute__((__unused__)) argc, char *argv[])
 
 	free(header);
 
-	c_elf(j);
+	ct_elf(j);
 
 	return (0);
 }

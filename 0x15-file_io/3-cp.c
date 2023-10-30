@@ -51,7 +51,7 @@ int main(int argc, char *argv[])
 		if (c_count == -1)
 			file_e(-1, 0, argv);
 		each = write(dest, baf, c_count);
-		if (c_count == -1)
+		if (each == -1)
 			file_e(0, -1, argv);
 	}
 	erroor = close(source);

@@ -2,6 +2,7 @@
 
 /**
  * add_dnodeint - combines new node
+ * @add_dnodeint: hf
  * @head: pointer
  * @n: inseter
  * Return adress
